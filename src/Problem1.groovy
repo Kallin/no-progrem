@@ -3,37 +3,26 @@ If we list all the natural numbers below 10 that are multiples of 3 or 5, we get
 
 Find the sum of all the multiples of 3 or 5 below 1000.
 */
+// answer: 234168
 
-public class Problem1 {
+public class Problem1 extends Problem {
 
-    static final
+    static final DIVISORS = [3, 5]
+    static final MAX = 999;
+    static final ANSWER = 233168
+
+    @Override
+    def getAnswer() {
+        return ANSWER;
+    }
 
     def solution1() {
         def sum = 0
-        (1..1000).each {
-            if (it % 3 == 0 || it % 5 == 0)
-                sum += it
+        (1..MAX).each { test ->
+            if (DIVISORS.find { divisor -> test % divisor == 0})
+                sum += test
         }
-        println sum
-    }
-
-    public static void main(String[] args) {
-
-        100.times {
-            def duration = timeCode {
-                new Problem1().solution1()
-            }
-            println duration
-        }
-
-
-    }
-
-    static long timeCode(Closure timedCode) {
-        def before = System.currentTimeMillis()
-        timedCode.call()
-        def after = System.currentTimeMillis()
-        after - before
+        assert getAnswer() == sum
     }
 
 }
