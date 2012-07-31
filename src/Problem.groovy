@@ -1,6 +1,6 @@
 abstract class Problem {
 
-    final static SOLUTION_RUN_COUNT = 1
+    final static SOLUTION_RUN_COUNT = 100
 
     static long timeCode(Closure timedCode) {
         def before = System.currentTimeMillis()
@@ -15,7 +15,7 @@ abstract class Problem {
 
         runProblem1()
         runProblem2()
-
+        runProblem3()
 
     }
 
@@ -43,5 +43,18 @@ abstract class Problem {
         }
         def avgTime = totalDuration / SOLUTION_RUN_COUNT
         println "average time for problem2: $avgTime ms"
+    }
+
+    public static void runProblem3() {
+        def totalDuration = 0
+        def problem3 = new Problem3()
+
+        SOLUTION_RUN_COUNT.times {
+            totalDuration += timeCode {
+                assert problem3.knownAnswer == problem3.solution1()
+            }
+        }
+        def avgTime = totalDuration / SOLUTION_RUN_COUNT
+        println "average time for problem3: $avgTime ms"
     }
 }

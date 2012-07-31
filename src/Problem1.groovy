@@ -3,17 +3,16 @@ If we list all the natural numbers below 10 that are multiples of 3 or 5, we get
 
 Find the sum of all the multiples of 3 or 5 below 1000.
 */
-// answer: 234168
 
 public class Problem1 extends Problem {
 
     static final DIVISORS = [3, 5]
     static final MAX = 999;
-    static final ANSWER = 233168
+    static final KNOWN_ANSWER = 233168
 
     @Override
     def getKnownAnswer() {
-        return ANSWER;
+        return KNOWN_ANSWER;
     }
 
     def solution1() {
