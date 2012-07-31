@@ -12,7 +12,7 @@ public class Problem1 extends Problem {
     static final ANSWER = 233168
 
     @Override
-    def getAnswer() {
+    def getKnownAnswer() {
         return ANSWER;
     }
 
@@ -22,7 +22,7 @@ public class Problem1 extends Problem {
             if (DIVISORS.find { divisor -> test % divisor == 0})
                 sum += test
         }
-        assert getAnswer() == sum
+        return sum
     }
 
 }

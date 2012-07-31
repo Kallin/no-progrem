@@ -7,8 +7,27 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
  */
 
 class Problem2 extends Problem {
+
+    final static MAX = 4000000
+    final static KNOWN_ANSWER = 4613732
+
+    def solution1() {
+        def temp
+        def prevTerm = 1
+        def currTerm = 2
+        def sumOfEvens = 0
+        while (currTerm < MAX) {
+            if (currTerm % 2 == 0)
+                sumOfEvens += currTerm
+            temp = currTerm + prevTerm
+            prevTerm = currTerm
+            currTerm = temp
+        }
+        return sumOfEvens
+    }
+
     @Override
-    def getAnswer() {
-        return null  //To change body of implemented methods use File | Settings | File Templates.
+    def getKnownAnswer() {
+        return KNOWN_ANSWER
     }
 }
