@@ -1,6 +1,6 @@
 abstract class Problem {
 
-    final static SOLUTION_RUN_COUNT = 100
+    final static SOLUTION_RUN_COUNT = 10
 
     static long timeCode(Closure timedCode) {
         def before = System.currentTimeMillis()
@@ -12,49 +12,20 @@ abstract class Problem {
     abstract getKnownAnswer();
 
     public static void main(String[] args) {
+        (1..4).each{
+            def totalDuration = 0
+            Problem problem = java.lang.Class.forName("Problem$it").newInstance()
 
-        runProblem1()
-        runProblem2()
-        runProblem3()
-
-    }
-
-    public static void runProblem1() {
-        def totalDuration = 0
-        def problem1 = new Problem1()
-
-        SOLUTION_RUN_COUNT.times {
-            totalDuration += timeCode {
-                assert problem1.knownAnswer == problem1.solution1()
+            SOLUTION_RUN_COUNT.times {
+                totalDuration += timeCode {
+                    assert problem.knownAnswer == problem.solution1()
+                }
             }
+
+            def avgTime = totalDuration / SOLUTION_RUN_COUNT
+            println "average time for problem$it: $avgTime ms"
+
         }
-        def avgTime = totalDuration / SOLUTION_RUN_COUNT
-        println "average time for problem1: $avgTime ms"
     }
 
-    public static void runProblem2() {
-        def totalDuration = 0
-        def problem2 = new Problem2()
-
-        SOLUTION_RUN_COUNT.times {
-            totalDuration += timeCode {
-                assert problem2.knownAnswer == problem2.solution1()
-            }
-        }
-        def avgTime = totalDuration / SOLUTION_RUN_COUNT
-        println "average time for problem2: $avgTime ms"
-    }
-
-    public static void runProblem3() {
-        def totalDuration = 0
-        def problem3 = new Problem3()
-
-        SOLUTION_RUN_COUNT.times {
-            totalDuration += timeCode {
-                assert problem3.knownAnswer == problem3.solution1()
-            }
-        }
-        def avgTime = totalDuration / SOLUTION_RUN_COUNT
-        println "average time for problem3: $avgTime ms"
-    }
 }
