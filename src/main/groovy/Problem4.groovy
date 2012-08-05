@@ -26,7 +26,7 @@ public class Problem4 extends Problem {
             stringifiedNumber = test.toString()
             isPalindrome = stringifiedNumber.reverse() == stringifiedNumber
             if (isPalindrome) {
-                final List<List<Long>> factorPairs = Util.factor(test)
+                final List<List<Long>> factorPairs = Util.factor(test, false)
                 for (List<Long> factorPair : factorPairs) {
                     length1 = factorPair[0].toString().length()
                     length2 = factorPair[1].toString().length()

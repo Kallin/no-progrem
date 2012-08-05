@@ -4,18 +4,20 @@ public class Util {
     // if you find a factor, then test/factor is also a factor.
     // you can then change the end point to test/factor
     // returns a list of factor-pairs
-    public static List<List<Long>> factor(long test) {
+    public static List<List<Long>> factor(long test, boolean quitOnNotPrime) {
         List<List<Long>> factorPairs = []
         factorPairs << [1, test]
 
         long end = (test / 2)
 
         def possibleFactor = 2
-        while (possibleFactor < end) {
+        while (possibleFactor <= end) {
             if (test % possibleFactor == 0) {
                 final newEnd = test / possibleFactor
                 end = newEnd
                 factorPairs << [(long) possibleFactor, (long) newEnd]
+                if (quitOnNotPrime)
+                    return factorPairs
             }
             possibleFactor++
         }
@@ -42,10 +44,20 @@ public class Util {
         return isPrime
     }
 
-    // simpler, reusing factor method, but takes longer than isPrime1
-    public static boolean isPrime2(long test) {
-        return factor(test).size()==1
+    /* every time we test a number we can avoid testing all of it's multiples
+    maintain a set of all the multiples.
+    we don't want to generate it indefinitely
+    we want to keep it in memory
+
+    */
+
+    public static List<Long> generatePrimes(Long primeCount) {
+
     }
 
-    //todo: try using factor method for prime, quitting as soon as first non-trivial pair found
+    // simpler, reusing factor method, shorter than isPrime1
+    public static boolean isPrime2(long test) {
+        return factor(test, true).size() == 1
+    }
+
 }

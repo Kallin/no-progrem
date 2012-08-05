@@ -15,7 +15,7 @@ public class Problem3 extends Problem {
     }
 
     def solution1() {
-        List<List<Long>> factorPairs = Util.factor(TARGET).sort().reverse()
+        List<List<Long>> factorPairs = Util.factor(TARGET, false).sort().reverse()
         return factorPairs.flatten().findAll {Util.isPrime(it)}.sort().reverse()[0]
     }
 

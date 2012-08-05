@@ -1,6 +1,6 @@
 abstract class Problem {
 
-    final static SOLUTION_RUN_COUNT = 10
+    final static SOLUTION_RUN_COUNT = 1
 
     static long timeCode(Closure timedCode) {
         def before = System.currentTimeMillis()
@@ -12,7 +12,7 @@ abstract class Problem {
     abstract getKnownAnswer();
 
     public static void main(String[] args) {
-        (1..4).each{
+        (1..7).each {
             def totalDuration = 0
             Problem problem = java.lang.Class.forName("Problem$it").newInstance()
 
