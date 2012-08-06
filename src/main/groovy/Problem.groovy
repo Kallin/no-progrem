@@ -14,7 +14,7 @@ abstract class Problem {
 
     public static void main(String[] args) {
         def skippedProblems = [7]
-        final problems = (1..8).toList()
+        final problems = (1..9).toList()
         problems.removeAll(skippedProblems)
         problems.each {
             def totalDuration = 0
