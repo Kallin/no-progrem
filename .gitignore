@@ -1,5 +1,5 @@
 /out
 /.gradle
 /build
+gradle-app.setting
 workspace.xml
-Scratch.groovy

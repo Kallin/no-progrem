@@ -1,7 +1,8 @@
 apply plugin: 'groovy'
+apply plugin: 'application'
 
-defaultTasks 'build'
-
+defaultTasks 'run'
+mainClassName = "Problem"
 
 repositories {
     mavenCentral()
