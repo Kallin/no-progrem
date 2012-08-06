@@ -11,8 +11,12 @@ abstract class Problem {
 
     abstract getKnownAnswer();
 
+
     public static void main(String[] args) {
-        (1..7).each {
+        def skippedProblems = [7]
+        final problems = (1..8).toList()
+        problems.removeAll(skippedProblems)
+        problems.each {
             def totalDuration = 0
             Problem problem = java.lang.Class.forName("Problem$it").newInstance()
 
