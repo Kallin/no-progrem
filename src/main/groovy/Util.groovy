@@ -12,6 +12,11 @@ public class Util {
 
         def possibleFactor = 2
         while (possibleFactor <= end) {
+
+            buildMultiples(end)
+            // let's skip if it's a multiple of something we've already done
+            // calc multiples up to end
+
             if (test % possibleFactor == 0) {
                 final newEnd = test / possibleFactor
                 end = newEnd
@@ -58,6 +63,64 @@ public class Util {
     // simpler, reusing factor method, shorter than isPrime1
     public static boolean isPrime2(long test) {
         return factor(test, true).size() == 1
+    }
+
+    //todo: have this take a closure
+    public static List<Long> sievePrimes(long max) {
+
+
+        def multiples = buildMultiples(max)
+
+        def primes = []
+
+        def test = 1
+        while (test < max) {
+            if (!multiples.contains(test)) {
+                if (isPrime2(test))
+                    primes << test
+            } else {
+                println test
+            }
+
+
+            test++
+        }
+
+        return primes
+    }
+
+    // FOR SURE not primes
+
+    static Set<Long> knownMultiples = []
+    static Long highestMultiple
+
+    public static getMultiplesTo(Long max) {
+        if (!highestMultiple) {
+            knownMultiples = buildMultiplesTo(2, max);
+        } else if (max > highestMultiple) {
+            knownMultiples = buildMultiplesTo(highestMultiple, max);
+        }
+
+        highestMultiple = max
+        return knownMultiples
+    }
+
+    public static Set buildMultiplesTo(Long min, Long max) {
+
+        final midway = max / 2
+        for (test in (2..midway)) {
+
+            if (knownMultiples.contains(test))
+                continue
+
+            def multiplier = 2
+            def multiple
+            while ((multiple = test * multiplier) < midway) {
+                knownMultiples << multiple
+                multiplier++
+            }
+        }
+
     }
 
 }
