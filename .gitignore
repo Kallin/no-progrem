@@ -2,4 +2,5 @@
 /.gradle
 /build
 gradle-app.setting
+.idea
 workspace.xml

@@ -13,7 +13,7 @@ public class Util {
         def possibleFactor = 2
         while (possibleFactor <= end) {
 
-            buildMultiples(end)
+            //buildMultiples(end)
             // let's skip if it's a multiple of something we've already done
             // calc multiples up to end
 
