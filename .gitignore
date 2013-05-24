@@ -1,5 +1,6 @@
 /out
 /build
+/.gradle
 euler.ipr
 euler.iws
 euler.iml
