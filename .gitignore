@@ -1,9 +1,6 @@
 /out
-/.gradle
 /build
-gradle-app.setting
-.idea
 euler.ipr
 euler.iws
 euler.iml
-workspace.xml
+atlassian-ide-plugin.xml
