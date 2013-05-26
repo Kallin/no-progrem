@@ -1,3 +1,4 @@
+package com.noproglem
 /*
 A Pythagorean triplet is a set of three natural numbers, a  b  c, for which,
 a^2 + b^2 = c^2
@@ -7,17 +8,6 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc
 */
 public class Problem9 extends Problem {
-
-    final static KNOWN_ANSWER = [
-            a: 200,
-            b: 375,
-            c: 425
-    ]
-
-    @Override
-    def getKnownAnswer() {
-        return KNOWN_ANSWER
-    }
 
     def solution1() {
         def a = 1

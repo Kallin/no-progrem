@@ -1,3 +1,5 @@
+package com.noproglem
+
 public class Util {
 
     // try dividing by 2, then 3, then 4, then 5... up to test/2

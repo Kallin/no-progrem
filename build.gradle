@@ -3,12 +3,47 @@ apply plugin: 'application'
 apply plugin: 'idea'
 
 defaultTasks 'run'
-mainClassName = "Problem"
+mainClassName = "com.noproglem.SolutionExecutor"
 
+//todo: can we remove this?
 repositories {
     mavenCentral()
 }
 
+//todo: remove gradle wrapper from source control
+
 dependencies {
-    compile group: 'org.codehaus.groovy', name: 'groovy', version: '2.1.3'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.1.3'
 }
+
+idea {
+    project {
+        ipr {
+            //todo: see about getting this into gradle core
+            withXml { provider ->
+                provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+
+                def gradleSettings = getFreshIprComponent(provider.node, 'GradleSettings')
+                gradleSettings.appendNode('option', [name: 'gradleHome', value: gradle.gradleHomeDir.absolutePath])
+
+                def javacSettings = getFreshIprComponent(provider.node, 'JavacSettings')
+                javacSettings.appendNode('option', [name: 'MAXIMUM_HEAP_SIZE', value: "256"])
+
+                provider.node.component.find { it.@name == 'ProjectRootManager' }.@languageLevel = 'JDK_1_7'
+            }
+        }
+    }
+}
+
+/**
+ * Returns a brand new Ipr component node with no children. If an existing component node is found it is removed along
+ * with all of its children and a fresh one is created.
+ */
+def getFreshIprComponent(Node projectNode, String componentName) {
+    Node existingComponent = (Node) projectNode.component.find { it.@name == componentName }
+    if (existingComponent) {
+        projectNode.remove(existingComponent)
+    }
+    return projectNode.appendNode('component', [name: componentName])
+}
+

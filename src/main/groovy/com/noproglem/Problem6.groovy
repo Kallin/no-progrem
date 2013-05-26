@@ -1,3 +1,4 @@
+package com.noproglem
 /*
 todo: replace with proper superscripts
 The sum of the squares of the first ten natural numbers is,
@@ -11,12 +12,6 @@ Find the difference between the sum of the squares of the first one hundred natu
 
 class Problem6 extends Problem {
 
-    final static KNOWN_ANSWER = 25164150
-
-    @Override
-    def getKnownAnswer() {
-        return KNOWN_ANSWER
-    }
 
     def solution1() {
         def sumOfSquares = 0
