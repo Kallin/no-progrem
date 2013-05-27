@@ -2,8 +2,7 @@ package com.noproglem
 
 class SolutionExecutor {
 
-    //todo: run count should be confiurable via build
-    final static SOLUTION_RUN_COUNT = 1
+    final static DEFAULT_RUN_COUNT = 1
 
     static long timeCode(Closure timedCode) {
         def before = System.currentTimeMillis()
@@ -13,6 +12,8 @@ class SolutionExecutor {
     }
 
     public static void main(String[] args) {
+        def runCount = args ? args[0].toInteger() : DEFAULT_RUN_COUNT
+
         def skippedProblems = (7)
         final problems = (1..9).toList()
         problems.removeAll(skippedProblems)
@@ -23,7 +24,7 @@ class SolutionExecutor {
 
             Problem problem = java.lang.Class.forName("com.noproglem.Problem$it").newInstance()
 
-            SOLUTION_RUN_COUNT.times {
+            runCount.times {
                 final executionTime = timeCode {
                     assert problem.answer == problem.solution1()
                 }
@@ -31,7 +32,7 @@ class SolutionExecutor {
                 totalDuration += executionTime
             }
 
-            def avgTime = totalDuration / SOLUTION_RUN_COUNT
+            def avgTime = totalDuration / runCount
             println "average time for problem$it: $avgTime ms"
             println "execution times: $runTimes"
         }

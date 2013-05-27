@@ -2,19 +2,20 @@ apply plugin: 'groovy'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-defaultTasks 'run'
 mainClassName = "com.noproglem.SolutionExecutor"
 
-//todo: can we remove this?
 repositories {
     mavenCentral()
 }
 
-//todo: remove gradle wrapper from source control
-
 dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.1.3'
 }
+
+run{
+    //args 10
+}
+
 
 idea {
     project {
