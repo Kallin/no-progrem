@@ -7,6 +7,11 @@ public class Util {
     // you can then change the end point to test/factor
     // returns a list of factor-pairs
     public static List<List<Long>> factor(long test, boolean quitOnNotPrime) {
+        if (test == 0)
+            throw new RuntimeException("0 has infinitely many factors")
+        if (test < 0)
+            throw new RuntimeException("We don't currently support negatives")
+
         List<List<Long>> factorPairs = []
         factorPairs << [1, test]
 
@@ -15,14 +20,10 @@ public class Util {
         def possibleFactor = 2
         while (possibleFactor <= end) {
 
-            //buildMultiples(end)
-            // let's skip if it's a multiple of something we've already done
-            // calc multiples up to end
-
             if (test % possibleFactor == 0) {
-                final newEnd = test / possibleFactor
-                end = newEnd
-                factorPairs << [(long) possibleFactor, (long) newEnd]
+                final otherFactor = test / possibleFactor
+                end = otherFactor - 1
+                factorPairs << [(long) possibleFactor, (long) otherFactor]
                 if (quitOnNotPrime)
                     return factorPairs
             }
@@ -32,97 +33,48 @@ public class Util {
         return factorPairs
     }
 
+    public static List<List<Long>> factor(long test) {
+        factor(test, false)
+    }
+
     public static boolean isPrime(long test) {
-        def isPrime = true
-        def possibleFactor = 2
-        while (possibleFactor < test) {
-            if (test % possibleFactor == 0) {
-                isPrime = false
-                break
-            }
-
-            //after checking 2, we no longer need to check even numbers
-            if (possibleFactor == 2) {
-                possibleFactor = 3
-            } else {
-                possibleFactor += 2
-            }
-        }
-        return isPrime
-    }
-
-    /* every time we test a number we can avoid testing all of it's multiples
-    maintain a set of all the multiples.
-    we don't want to generate it indefinitely
-    we want to keep it in memory
-
-    */
-
-    public static List<Long> generatePrimes(Long primeCount) {
-
-    }
-
-    // simpler, reusing factor method, shorter than isPrime1
-    public static boolean isPrime2(long test) {
         return factor(test, true).size() == 1
     }
 
-    //todo: have this take a closure
-    public static List<Long> sievePrimes(long max) {
+    // Sieve of Eratosthenes
+    public static Set<Long> findPrimes(long max) {
+        if (max <= 1)
+            throw new RuntimeException("unable to find primes for numbers not greater than 1")
 
-
-        def multiples = buildMultiples(max)
-
-        def primes = []
-
-        def test = 1
-        while (test < max) {
-            if (!multiples.contains(test)) {
-                if (isPrime2(test))
-                    primes << test
-            } else {
-                println test
-            }
-
-
-            test++
-        }
-
-        return primes
+        def composites = findComposites(max)
+        final range = (2..max) as Set
+        range.removeAll(composites)
+        return range as Set
     }
 
-    // FOR SURE not primes
+    // find all composite (non-primes) up to a given value
+    public static Set<Long> findComposites(Long max) {
+        if (max < 2)
+            throw new RuntimeException("unable to calculate composites for negative numbers")
 
-    static Set<Long> knownMultiples = []
-    static Long highestMultiple
-
-    public static getMultiplesTo(Long max) {
-        if (!highestMultiple) {
-            knownMultiples = buildMultiplesTo(2, max);
-        } else if (max > highestMultiple) {
-            knownMultiples = buildMultiplesTo(highestMultiple, max);
-        }
-
-        highestMultiple = max
-        return knownMultiples
-    }
-
-    public static Set buildMultiplesTo(Long min, Long max) {
+        def composites = new HashSet<Long>()
+        if (max < 4)
+            return composites
 
         final midway = max / 2
         for (test in (2..midway)) {
-
-            if (knownMultiples.contains(test))
+            if (composites.contains(test))
                 continue
 
             def multiplier = 2
             def multiple
-            while ((multiple = test * multiplier) < midway) {
-                knownMultiples << multiple
+            while ((multiple = test * multiplier) <= max) {
+                composites << multiple.toLong()
                 multiplier++
             }
         }
 
+        return composites
     }
 
 }
