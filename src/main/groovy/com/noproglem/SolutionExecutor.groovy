@@ -15,14 +15,14 @@ class SolutionExecutor {
         def runCount = args ? args[0].toInteger() : DEFAULT_RUN_COUNT
 
         def skippedProblems = (0..0)
-        final problems = (1..11).toList()
+        final problems = (1..13).toList()
         problems.removeAll(skippedProblems)
         problems.each {
             def totalDuration = 0
 
             def runTimes = []
 
-            Problem problem = java.lang.Class.forName("com.noproglem.Problem$it").newInstance()
+            Problem problem = Class.forName("com.noproglem.Problem$it").newInstance() as Problem
 
             runCount.times {
                 final executionTime = timeCode {
