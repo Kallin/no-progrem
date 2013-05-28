@@ -14,9 +14,9 @@ class SolutionExecutor {
     public static void main(String[] args) {
         def runCount = args ? args[0].toInteger() : DEFAULT_RUN_COUNT
 
-        def skippedProblems = (1..9)
-        final problems = (1..10).toList()
-        //problems.removeAll(skippedProblems)
+        def skippedProblems = (0..0)
+        final problems = (1..11).toList()
+        problems.removeAll(skippedProblems)
         problems.each {
             def totalDuration = 0
 
