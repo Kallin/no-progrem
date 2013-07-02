@@ -13,7 +13,7 @@ abstract class Problem {
         final file = new File("problems/src/main/resources/${simpleName}.json")
         final slurper = new JsonSlurper()
         def object = slurper.parseText(file.text)
-        ['description', 'answer', 'given'].each {
+        ['answer', 'given'].each {
             this[it] = object[it]
         }
     }
