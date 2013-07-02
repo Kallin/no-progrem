@@ -1,7 +1,9 @@
 /out
 /build
 /.gradle
-euler.ipr
-euler.iws
-euler.iml
+
+*.ipr
+*.iws
+*.iml
+
 atlassian-ide-plugin.xml
