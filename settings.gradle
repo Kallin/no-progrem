@@ -1,5 +1,11 @@
 include 'problems'
-include 'cplusplus'
-include 'groovy'
-include 'java'
-include 'scala'
+include 'problems:groovy'
+
+include 'patterns'
+include 'patterns:java'
+
+include 'language'
+include 'language:cplusplus'
+include 'language:groovy'
+include 'language:java'
+include 'language:scala'

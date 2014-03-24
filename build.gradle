@@ -1,35 +1,10 @@
+
+junitVersion = 4.11
+
 allprojects {
     apply plugin: "idea"
-}
-
-idea {
-    project {
-        ipr {
-            //todo: see about getting this into gradle core
-            withXml { provider ->
-                provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
-
-                def gradleSettings = getFreshIprComponent(provider.node, 'GradleSettings')
-                gradleSettings.appendNode('option', [name: 'gradleHome', value: gradle.gradleHomeDir.absolutePath])
-
-                def javacSettings = getFreshIprComponent(provider.node, 'JavacSettings')
-                javacSettings.appendNode('option', [name: 'MAXIMUM_HEAP_SIZE', value: "256"])
-
-                provider.node.component.find { it.@name == 'ProjectRootManager' }.@languageLevel = 'JDK_1_7'
-            }
-        }
+    repositories {
+        mavenCentral()
     }
-}
-
-/**
- * Returns a brand new Ipr component node with no children. If an existing component node is found it is removed along
- * with all of its children and a fresh one is created.
- */
-def getFreshIprComponent(Node projectNode, String componentName) {
-    Node existingComponent = (Node) projectNode.component.find { it.@name == componentName }
-    if (existingComponent) {
-        projectNode.remove(existingComponent)
-    }
-    return projectNode.appendNode('component', [name: componentName])
 }
 
