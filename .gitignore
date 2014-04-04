@@ -1,6 +1,6 @@
 /out
-/build
 /.gradle
+build
 
 *.ipr
 *.iws

@@ -3,6 +3,7 @@ include 'problems:groovy'
 
 include 'patterns'
 include 'patterns:java'
+include 'patterns:groovy'
 
 include 'language'
 include 'language:cplusplus'

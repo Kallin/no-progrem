@@ -10,9 +10,9 @@ public class FlyweightPatternTest {
     public void testFlightweightCreation() {
         final FlyweightPattern.FlyweightFactory flyweightFactory = new FlyweightPattern.FlyweightFactory();
 
-        final FlyweightPattern.FlyWeight flyweight1 = flyweightFactory.createFlyweight("NAME1");
-        final FlyweightPattern.FlyWeight flyweight2 = flyweightFactory.createFlyweight("NAME1");
-        final FlyweightPattern.FlyWeight flyweight3 = flyweightFactory.createFlyweight("NAME2");
+        FlyweightPattern.FlyWeight flyweight1 = flyweightFactory.createFlyweight("NAME1");
+        FlyweightPattern.FlyWeight flyweight2 = flyweightFactory.createFlyweight("NAME1");
+        FlyweightPattern.FlyWeight flyweight3 = flyweightFactory.createFlyweight("NAME2");
 
         Assert.assertSame("flyweights with the same name should have been the same object", flyweight1, flyweight2);
         Assert.assertNotSame("flyweights with different names should have been different objects", flyweight1, flyweight3);

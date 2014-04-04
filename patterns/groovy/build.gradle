@@ -1,0 +1,4 @@
+apply plugin: 'groovy'
+apply plugin: 'codenarc'
+
+codenarc.configFile = file "$rootProject.projectDir/config/codenarc/rules.groovy"

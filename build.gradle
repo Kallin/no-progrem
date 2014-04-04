@@ -1,10 +1,44 @@
-
-junitVersion = 4.11
-
 allprojects {
     apply plugin: "idea"
+
     repositories {
         mavenCentral()
     }
+
+    ext {
+        junitVersion = '4.11'
+        groovyVersion = '2.1.3'
+        scalaVersion = '2.1.0'
+        spockVersion = '0.7-groovy-2.0'
+        hamcrestVersion = '1.3'
+    }
+
+    project.plugins.withType(JavaPlugin.class) {
+        dependencies {
+            testCompile "junit:junit:$junitVersion"
+        }
+    }
+
+    project.plugins.withType(GroovyPlugin.class) {
+        dependencies {
+            compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+            testCompile "org.spockframework:spock-core:$spockVersion"
+            testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
+            testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+        }
+    }
+
+    project.plugins.withType(CodeNarc.class) {
+
+    }
+
+    project.plugins.withType(ScalaPlugin.class) {
+        dependencies {
+            testCompile "org.scalatest:scalatest_2.10:$scalaVersion"
+
+        }
+    }
 }
+
+idea.project.languageLevel = 'JDK_1_7'
 
