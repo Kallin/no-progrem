@@ -1,5 +1,8 @@
 package com.noproglem
 
+import groovy.util.logging.Slf4j
+
+@Slf4j
 class SolutionExecutor {
 
     final static DEFAULT_RUN_COUNT = 1
@@ -11,21 +14,21 @@ class SolutionExecutor {
         after - before
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         def runCount = args ? args[0].toInteger() : DEFAULT_RUN_COUNT
 
         def skippedProblems = (0..0)
-        final problems = (1..16).toList()
+        def problems = (1..16).toList()
         problems.removeAll(skippedProblems)
         problems.each {
             def totalDuration = 0
 
             def runTimes = []
 
-            Problem problem = Class.forName("com.noproglem.Problem$it").newInstance() as Problem
+            Problem problem = this.classLoader.loadClass("com.noproglem.Problem$it").newInstance() as Problem
 
             runCount.times {
-                final executionTime = timeCode {
+                def executionTime = timeCode {
                     assert problem.answer == problem.solution1()
                 }
                 runTimes << executionTime
@@ -33,8 +36,9 @@ class SolutionExecutor {
             }
 
             def avgTime = totalDuration / runCount
-            println "average time for problem$it: $avgTime ms"
-            println "execution times: $runTimes"
+
+            log.info "average time for problem$it: $avgTime ms"
+            log.info "execution times: $runTimes"
         }
     }
 

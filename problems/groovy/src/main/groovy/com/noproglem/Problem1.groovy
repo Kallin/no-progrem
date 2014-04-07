@@ -1,6 +1,6 @@
 package com.noproglem
 
-public class Problem1 extends Problem {
+class Problem1 extends Problem {
 
     def solution1() {
         def sum = 0
@@ -8,7 +8,8 @@ public class Problem1 extends Problem {
             if (given.divisors.find { divisor -> test % divisor == 0 })
                 sum += test
         }
-        return sum
+
+        sum
     }
 
 }

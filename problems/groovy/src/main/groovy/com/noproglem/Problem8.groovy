@@ -1,6 +1,6 @@
 package com.noproglem
 
-public class Problem8 extends Problem {
+class Problem8 extends Problem {
 
     // todo: optimize by skipping ranges that contain 0
     // todo: when shifting one over, we can divide the first digit of the previous test off and multiply the incoming digit, saving operations if consecutive_digits>2
@@ -25,7 +25,7 @@ public class Problem8 extends Problem {
 
         }
 
-        return maxProduct
+        maxProduct
     }
 }
 

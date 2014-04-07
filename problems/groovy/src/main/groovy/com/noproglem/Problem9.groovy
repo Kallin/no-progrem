@@ -1,6 +1,6 @@
 package com.noproglem
 
-public class Problem9 extends Problem {
+class Problem9 extends Problem {
 
     def solution1() {
         def a = 1
@@ -10,7 +10,7 @@ public class Problem9 extends Problem {
         while (true) {
             isTriplet = (a * a + b * b) == c * c
             if (isTriplet) {
-                return a * b * c;
+                return a * b * c
             }
 
             b++

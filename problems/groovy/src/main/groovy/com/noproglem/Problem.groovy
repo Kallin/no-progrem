@@ -2,16 +2,16 @@ package com.noproglem
 
 import groovy.json.JsonSlurper
 
-abstract class Problem {
+class Problem {
 
     def answer
     def given
 
     Problem() {
-        final simpleName = this.class.simpleName.toLowerCase()
+        def simpleName = this.class.simpleName.toLowerCase()
 
-        final file = new File("../problems/src/main/resources/${simpleName}.json")
-        final slurper = new JsonSlurper()
+        def file = new File("problems/src/main/resources/${simpleName}.json")
+        def slurper = new JsonSlurper()
         def object = slurper.parseText(file.text)
         ['answer', 'given'].each {
             this[it] = object[it]

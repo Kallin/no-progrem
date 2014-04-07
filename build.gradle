@@ -11,34 +11,50 @@ allprojects {
         scalaVersion = '2.1.0'
         spockVersion = '0.7-groovy-2.0'
         hamcrestVersion = '1.3'
+        slfVersion = '1.7.5'
     }
 
-    project.plugins.withType(JavaPlugin.class) {
+    if (project.projectDir =~ '.groovy') {
+        apply plugin: 'groovy'
+        apply plugin: 'codenarc'
+    }
+
+    if (project.projectDir =~ '.java') {
+        apply plugin: 'java'
+    }
+
+    if (project.projectDir =~ '.scala') {
+        apply plugin: 'scala'
+    }
+
+    plugins.withType(JavaPlugin.class) {
         dependencies {
+            compile "org.slf4j:slf4j-api:$slfVersion"    // todo: extract common dependencies
+            compile "org.slf4j:slf4j-log4j12:$slfVersion"
             testCompile "junit:junit:$junitVersion"
         }
     }
 
-    project.plugins.withType(GroovyPlugin.class) {
+    plugins.withType(GroovyPlugin.class) {
+        codenarc.configFile = file "$rootProject.projectDir/config/codenarc/rules.groovy"
+
         dependencies {
+            compile "org.slf4j:slf4j-api:$slfVersion"
+            compile "org.slf4j:slf4j-log4j12:$slfVersion"
             compile "org.codehaus.groovy:groovy-all:$groovyVersion"
             testCompile "org.spockframework:spock-core:$spockVersion"
             testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
             testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
-        }
+         }
     }
 
-    project.plugins.withType(CodeNarc.class) {
-
-    }
-
-    project.plugins.withType(ScalaPlugin.class) {
+    plugins.withType(ScalaPlugin.class) {
         dependencies {
             testCompile "org.scalatest:scalatest_2.10:$scalaVersion"
-
         }
     }
 }
 
 idea.project.languageLevel = 'JDK_1_7'
+idea.project.vcs = 'Git'
 

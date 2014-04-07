@@ -1,6 +1,6 @@
 package com.noproglem
 
-public class Problem7 extends Problem {
+class Problem7 extends Problem {
 
     def solution1() {
         def primeCount = 0

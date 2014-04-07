@@ -2,7 +2,7 @@ package com.noproglem
 
 class Problem15 extends Problem {
 
-    private int gridSize
+    private final int gridSize
 
     Problem15() {
         gridSize = given.gridSize
@@ -11,7 +11,7 @@ class Problem15 extends Problem {
     def solution1() {
         move(0, 0)
 
-        return pathsFound
+        pathsFound
     }
 
     long pathsFound = 0
@@ -20,8 +20,7 @@ class Problem15 extends Problem {
     def move(int x, int y) {
         if (x == gridSize && y == gridSize) {
             pathsFound++
-            if (pathsFound % 100000 == 0)
-                println pathsFound
+
             return
         }
 
@@ -32,7 +31,7 @@ class Problem15 extends Problem {
             return
         }
 
-        long knownPaths = pathsFound;
+        long knownPaths = pathsFound
 
         if (x < gridSize)
             move(x + 1, y)

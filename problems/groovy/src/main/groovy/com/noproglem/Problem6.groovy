@@ -11,7 +11,7 @@ class Problem6 extends Problem {
         }
 
         def squareOfSums = sum * sum
-        return squareOfSums - sumOfSquares
+        squareOfSums - sumOfSquares
     }
 
 }

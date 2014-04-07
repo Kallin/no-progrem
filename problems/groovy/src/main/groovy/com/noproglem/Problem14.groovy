@@ -1,5 +1,6 @@
 package com.noproglem
 
+@SuppressWarnings('DuplicateNumberLiteral')
 class Problem14 extends Problem {
 
     def solution1() {
@@ -16,7 +17,7 @@ class Problem14 extends Problem {
             }
         }
 
-        return collatzForMax
+        collatzForMax
     }
 
     def collatzMap = [:]
@@ -35,7 +36,8 @@ class Problem14 extends Problem {
         }
 
         collatzMap[test] = collatzValue
-        return collatzMap[test]
+
+        collatzMap[test]
     }
 
 }

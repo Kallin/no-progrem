@@ -1,9 +1,9 @@
 package com.noproglem
 
-public class Problem10 extends Problem {
+class Problem10 extends Problem {
 
     def solution1() {
-        return Util.findPrimes(1999999).sum()
+        Util.findPrimes(1999999).sum()
     }
 
 }

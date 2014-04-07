@@ -2,8 +2,9 @@ package com.noproglem
 
 class Problem11 extends Problem {
 
+    @SuppressWarnings('DuplicateNumberLiteral')
     def solution1() {
-        final grid = given.grid
+        grid = given.grid
 
         // assume a square grid
         def length = grid.size()
@@ -14,11 +15,11 @@ class Problem11 extends Problem {
         // scan each row, from top-left to bottom-right. we only need to look right, down, diag down-right or diag down-left.
         for (row in 0..length - 1) {
             for (column in 0..length - 1) {
-                final cellValue = grid[row][column]
+                def cellValue = grid[row][column]
 
-                final roomRight = column < length - 3
-                final roomBelow = row < length - 3
-                final roomLeft = column > 2
+                def roomRight = column < length - 3
+                def roomBelow = row < length - 3
+                def roomLeft = column > 2
 
                 if (roomRight) {
                     def product = cellValue * grid[row][column + 1] * grid[row][column + 2] * grid[row][column + 3]
@@ -43,7 +44,7 @@ class Problem11 extends Problem {
             }
         }
 
-        return maxProduct
+        maxProduct
     }
 
 }

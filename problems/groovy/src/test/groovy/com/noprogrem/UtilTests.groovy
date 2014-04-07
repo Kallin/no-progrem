@@ -6,12 +6,12 @@ import org.junit.Test
 
 class UtilTests {
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void factorZeroShouldShouldFail() {
         Util.factor(0)
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void factorNegativeShouldFail() {
         Util.factor(-1)
     }
@@ -29,14 +29,14 @@ class UtilTests {
         assert Util.factor(20, true) == [[1, 20], [2, 10]]
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void primeCheckZeroShouldFail() {
-        println Util.isPrime(0)
+        Util.isPrime(0)
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void primeCheckNegativeShouldFail() {
-        println Util.isPrime(-1)
+        Util.isPrime(-1)
     }
 
     final static KNOWN_PRIMES_TO_TWENTY = [1, 2, 3, 5, 7, 11, 13, 17, 19]
@@ -51,7 +51,7 @@ class UtilTests {
         }
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void compositesToNegativeShouldFail() {
         Util.findComposites(-1)
     }
@@ -70,17 +70,17 @@ class UtilTests {
         assert Util.findComposites(10) == (knownComposites << 10)
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void primesToNegativeShouldFail() {
         Util.findPrimes(-1)
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void primesToZeroShouldFail() {
         Util.findPrimes(0)
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = RuntimeException)
     void primesToOneShouldFail() {
         Util.findPrimes(1)
     }

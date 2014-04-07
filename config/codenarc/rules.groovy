@@ -20,7 +20,9 @@ ruleset {
             doNotApplyToClassNames = '*Test, *Spec'
         }
     }
-    ruleset('rulesets/security.xml')
+    ruleset('rulesets/security.xml') {
+        JavaIoPackageAccess(enabled: false)
+    }
     ruleset('rulesets/size.xml') {
         CrapMetric(enabled: false)
     }

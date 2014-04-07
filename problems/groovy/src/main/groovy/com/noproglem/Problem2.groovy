@@ -1,5 +1,6 @@
 package com.noproglem
 
+@SuppressWarnings('DuplicateNumberLiteral')
 class Problem2 extends Problem {
 
     def solution1() {
@@ -14,7 +15,8 @@ class Problem2 extends Problem {
             prevTerm = currTerm
             currTerm = temp
         }
-        return sumOfEvens
+
+        sumOfEvens
     }
 
 

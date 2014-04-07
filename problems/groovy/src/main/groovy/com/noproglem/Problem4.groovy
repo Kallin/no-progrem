@@ -4,7 +4,7 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 */
-public class Problem4 extends Problem {
+class Problem4 extends Problem {
 
     // now we just need to scan down palindromes, factor each, and see if any factor pair are both 2 digits
     def solution1() {
@@ -17,7 +17,7 @@ public class Problem4 extends Problem {
             stringifiedNumber = test.toString()
             isPalindrome = stringifiedNumber.reverse() == stringifiedNumber
             if (isPalindrome) {
-                final List<List<Long>> factorPairs = Util.factor(test, false)
+                List<List<Long>> factorPairs = Util.factor(test, false)
                 for (List<Long> factorPair : factorPairs) {
                     length1 = factorPair[0].toString().length()
                     length2 = factorPair[1].toString().length()
