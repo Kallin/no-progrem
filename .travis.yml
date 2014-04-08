@@ -1,3 +1,5 @@
 language: java
-env:
-  - "JAVA_OPTS='-XX:MaxPermSize=256m'"
+before_script:
+ - "echo $JAVA_OPTS"
+ - "export JAVA_OPTS='-XX:MaxPermSize=256m'"
+ - "echo $JAVA_OPTS"
