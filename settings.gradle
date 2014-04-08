@@ -1,12 +1,9 @@
-include 'problems'
-include 'problems:groovy'
+def languages = ['java', 'groovy', 'scala', 'cplusplus']
+def projects = ['language', 'patterns', 'problems']
 
-include 'patterns'
-include 'patterns:java'
-include 'patterns:groovy'
-
-include 'language'
-include 'language:cplusplus'
-include 'language:groovy'
-include 'language:java'
-include 'language:scala'
+projects.each { project ->
+    include project
+    languages.each { language ->
+        include "$project:$language"
+    }
+}

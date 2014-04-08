@@ -1,0 +1,28 @@
+allprojects {
+    apply plugin: "idea"
+}
+
+idea {
+    project {
+        languageLevel = '1.7'
+
+        ipr {
+            withXml { provider ->
+                def node = provider.asNode()
+
+                // Use git
+                def vcsConfig = node.component.find { it.'@name' == 'VcsDirectoryMappings' }
+                vcsConfig.mapping[0].'@vcs' = 'Git'
+
+                // Set gradle home
+                def gradleSettings = node.appendNode('component', [name: 'GradleSettings'])
+                gradleSettings.appendNode('option', [name: 'SDK_HOME', value: gradle.gradleHomeDir.absolutePath])
+
+                // set compiler heap space
+                def javacSettings = node.appendNode('component', [name: 'JavacSettings'])
+                javacSettings.appendNode('option', [name: 'MAXIMUM_HEAP_SIZE', value: "256"])
+
+            }
+        }
+    }
+}

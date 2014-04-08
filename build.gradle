@@ -1,17 +1,9 @@
-allprojects {
-    apply plugin: "idea"
+apply from: "gradle/idea.gradle"
+apply from: "gradle/dependencies.gradle"
 
+allprojects {
     repositories {
         mavenCentral()
-    }
-
-    ext {
-        junitVersion = '4.11'
-        groovyVersion = '2.1.3'
-        scalaVersion = '2.1.0'
-        spockVersion = '0.7-groovy-2.0'
-        hamcrestVersion = '1.3'
-        slfVersion = '1.7.5'
     }
 
     if (project.projectDir =~ '.groovy') {
@@ -29,9 +21,8 @@ allprojects {
 
     plugins.withType(JavaPlugin.class) {
         dependencies {
-            compile "org.slf4j:slf4j-api:$slfVersion"    // todo: extract common dependencies
-            compile "org.slf4j:slf4j-log4j12:$slfVersion"
-            testCompile "junit:junit:$junitVersion"
+            compile deps.slf
+            testCompile deps.junit
         }
     }
 
@@ -39,22 +30,14 @@ allprojects {
         codenarc.configFile = file "$rootProject.projectDir/config/codenarc/rules.groovy"
 
         dependencies {
-            compile "org.slf4j:slf4j-api:$slfVersion"
-            compile "org.slf4j:slf4j-log4j12:$slfVersion"
-            compile "org.codehaus.groovy:groovy-all:$groovyVersion"
-            testCompile "org.spockframework:spock-core:$spockVersion"
-            testCompile "org.hamcrest:hamcrest-all:$hamcrestVersion"
-            testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
-         }
+            compile deps.slf, deps.groovy
+            testCompile deps.hamcrest, deps.spock
+        }
     }
 
     plugins.withType(ScalaPlugin.class) {
         dependencies {
-            testCompile "org.scalatest:scalatest_2.10:$scalaVersion"
+            testCompile deps.scalaTest
         }
     }
 }
-
-idea.project.languageLevel = 'JDK_1_7'
-idea.project.vcs = 'Git'
-
