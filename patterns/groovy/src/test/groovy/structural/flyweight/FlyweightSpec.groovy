@@ -8,14 +8,14 @@ class FlyweightSpec extends Specification {
 
     def 'can create flyweights'() {
         when:
-        def flyweightFactory = new FlyweightPattern.FlyweightFactory()
+        def flyweightFactory = new FlyweightFactory()
 
         def name1 = 'NAME1'
         def name2 = 'NAME2'
 
-        def flyweight1 = flyweightFactory.getFlyweight(name1)
-        def flyweight2 = flyweightFactory.getFlyweight(name1)
-        def flyweight3 = flyweightFactory.getFlyweight(name2)
+        def flyweight1 = flyweightFactory.getFlyWeight(name1)
+        def flyweight2 = flyweightFactory.getFlyWeight(name1)
+        def flyweight3 = flyweightFactory.getFlyWeight(name2)
 
         then:
 

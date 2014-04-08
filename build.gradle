@@ -13,6 +13,9 @@ allprojects {
 
     if (project.projectDir =~ '.java') {
         apply plugin: 'java'
+        apply plugin: 'checkstyle'
+
+        checkstyle.configFile = file "$rootProject.projectDir/config/checkstyle/checkstyle.xml"
     }
 
     if (project.projectDir =~ '.scala') {
